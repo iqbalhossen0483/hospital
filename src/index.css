@@ -1,13 +1,145 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .menu-md {
+    @apply bg-primary text-gray-100 px-2 py-1 rounded hover:shadow-md 
+    shadow-primary text-sm hover:bg-[#079bdaee];
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  body {
+    @apply bg-gray-100;
+  }
+  input {
+    @apply rounded px-3 py-1 w-full border;
+  }
+  .input-wrapper {
+    @apply flex flex-col-reverse gap-1;
+  }
+
+  .header {
+    @apply grid grid-cols-4 py-2 md:px-5 md:flex justify-between items-center
+    sticky top-0 z-50 bg-white shadow;
+  }
+  .menu-container {
+    @apply z-50 flex-col absolute top-full left-0 bg-white w-2/4
+    h-[90vh] pl-5 pt-8 space-y-2 font-medium 
+    md:pb-0 md:flex-row md:items-center md:justify-end md:space-x-2 md:static md:h-fit
+    md:p-0 md:bg-transparent;
+  }
+  .menu-container a {
+    @apply md:menu-md;
+  }
+  .appointment-form {
+    @apply flex flex-col md:grid grid-cols-4 w-full md:w-5/6 md:border items-center 
+    bg-white z-40 rounded;
+  }
+  .appointment-form .heading {
+    @apply py-16 w-full bg-primary text-xl text-center font-medium;
+  }
+  .appointment-form .heading .icon {
+    @apply text-gray-200 text-3xl;
+  }
+  .service-item {
+    @apply mb-5 sm:mb-0 bg-white rounded shadow;
+  }
+  .service-img {
+    @apply h-full object-cover mb-2 md:mb-0 cursor-pointer rounded-l;
+  }
+  .doctor-wrapper {
+    @apply bg-white rounded-md shadow-lg mx-3 relative;
+  }
+  .doctor-name {
+    @apply text-sm font-medium text-center py-2 bg-primary text-gray-100 rounded-b
+    cursor-pointer;
+  }
+  .doctor-details {
+    @apply absolute bottom-8 text-sm p-4 bg-[#0391ce6e] h-[88%] rounded-t 
+    items-end text-gray-50 overflow-hidden;
+  }
+  .footer {
+    @apply bg-primary sm:grid grid-cols-3 gap-3 py-4 pb-4 px-6 mt-10 text-gray-100;
+  }
+  .closebtn {
+    @apply md:hidden absolute top-3 right-3 bg-gray-100 h-7 w-7 rounded-2xl flex justify-center
+    items-center text-gray-500;
+  }
+  .login-container {
+    @apply mx-5 bg-white border rounded-md py-5 px-3 my-16 overflow-hidden md:w-2/4 
+    md:mx-auto lg:w-[350px];
+  }
+  .user-info-wrapper {
+    @apply h-60 w-64 absolute top-20 md:top-14 right-8 shadow-md bg-white rounded px-5 py-7 text-center flex flex-col justify-evenly;
+  }
+  .contact-wrapper {
+    @apply w-full md:w-96 mx-auto md:border rounded-md my-24 py-7 px-4 bg-white;
+  }
+  table {
+    @apply bg-white w-full md:w-[80%] mx-auto rounded;
+  }
+  tr {
+    @apply border-b;
+  }
+  thead tr th {
+    @apply text-sm font-medium;
+  }
+  tbody tr:last-child {
+    @apply border-b-0;
+  }
+  tbody tr:nth-child(odd) {
+    @apply bg-gray-50;
+  }
+  tbody tr:nth-child(even) {
+    @apply hover:bg-gray-50;
+  }
+  td,
+  th {
+    @apply px-4 py-2 text-center;
+  }
+}
+
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
+  -webkit-box-orient: vertical;
+}
+.service-img {
+  transition: all 0.5s linear;
+}
+.service-img:hover {
+  transform: scale(1.2);
+}
+.doctor-details p {
+  text-shadow: 1px 1px 0px #0391cebe;
+}
+.doctor-details {
+  animation: Doctors 0.5s linear;
+}
+input:required + label::after {
+  content: "*";
+  margin-left: 3px;
+  margin-bottom: 2px;
+  color: #ff0000a9;
+}
+textarea:required + label::after {
+  content: "*";
+  margin-left: 3px;
+  margin-bottom: 2px;
+  color: #ff0000a9;
+}
+
+@keyframes Doctors {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 88%;
+  }
 }
