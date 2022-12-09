@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../Footer/Footer";
 
 const ContactUs = () => {
   return (
@@ -21,7 +20,6 @@ const ContactUs = () => {
           </div>
         </form>
       </div>
-      <Footer />
     </>
   );
 };

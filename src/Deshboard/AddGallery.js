@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const AddGallery = () => {
   const { register, handleSubmit, reset } = useForm();
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = (img) => {
+    setLoading(true);
     fetch("https://iqbal.diaryofmind.com/hospital/", {
       method: "post",
       headers: {
@@ -15,24 +18,32 @@ const AddGallery = () => {
       .then((data) => {
         if (data.insertedId) {
           alert("An image added successfully");
-          reset({ img: "" });
+          reset();
         }
-      });
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
   return (
-    <div className='col-span-4 flex justify-center'>
+    <div className='flex justify-center'>
       <form
-        className='flex flex-col justify-center w-2/5 p-8 bg-white h-auto my-10 border rounded'
+        className='w-full md:w-2/5 p-8 bg-white border rounded'
         onSubmit={handleSubmit(onSubmit)}
       >
         <input
           type='text'
-          {...register("img")}
+          {...register("img", { required: true })}
+          required
           placeholder='Enter img url'
-          className='border rounded mt-2 px-3 py-1'
         />
-        <div className='flex justify-center'>
-          <input type='submit' className='mt-2 rounded button w-32' />
+        <div className='flex justify-center mt-7'>
+          <button
+            disabled={loading}
+            type='submit'
+            className='button bg-primary'
+          >
+            {loading ? "Loading..." : "Save"}
+          </button>
         </div>
       </form>
     </div>

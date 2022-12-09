@@ -11,40 +11,40 @@ const DesbordDoctors = () => {
       .then((res) => res.json())
       .then((data) => setDoctor(data));
   }, []);
-  const goAddDoctor = () => {
-    navigate("/desboard/add-doctor");
-  };
+
   return (
-    <div className='col-span-4'>
-      <div className='text-center my-3 grid grid-cols-3'>
-        <p className='text-2xl col-span-2'>
-          Available service: {doctors.length}
-        </p>
-        <button
-          onClick={goAddDoctor}
-          className='border py-1 px-3 bg-blue-500 text-white rounded w-16 justify-self-end mr-3'
-        >
-          Add+
-        </button>
-      </div>
-      {doctors.map((doctor) => (
-        <div
-          key={doctor._id}
-          className='grid grid-cols-3 items-center bg-white my-3 rounded'
-        >
-          <img className='w-32 p-5' src={doctor.img} alt='' />
-          <p className='text-xl'>{doctor.name}</p>
-          <div className='text-right mr-3'>
-            <button className='border py-1 px-3 bg-blue-500 text-white rounded'>
-              Edit
+    <table className='w-full'>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>
+            <button
+              onClick={() => navigate("/desboard/add-doctor")}
+              className='button'
+            >
+              Add+
             </button>
-            <button className='border py-1 px-3 bg-blue-500 text-white rounded'>
-              Delete
-            </button>
-          </div>
-        </div>
-      ))}
-    </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {doctors.map((doctor) => (
+          <tr key={doctor._id}>
+            <td className='p-0'>
+              <img className='h-20 w-24' src={doctor.img} alt='' />
+            </td>
+            <td>{doctor.name}</td>
+            <td>
+              <div className='flex justify-center gap-2'>
+                <button className='button normal-case'>Edit</button>
+                <button className='button normal-case'>Delete</button>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

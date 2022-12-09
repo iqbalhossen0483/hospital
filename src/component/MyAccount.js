@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useAlert } from "react-alert";
-import Footer from "./Footer/Footer";
 import useAuth from "./Hooks/useAuth";
 
 const MyAccount = () => {
@@ -79,7 +78,6 @@ const MyAccount = () => {
             )}
           </div>
         </div>
-        <Footer />
       </div>
     </>
   );

@@ -4,9 +4,6 @@ import useData from "../component/Hooks/useData";
 const DesboardService = () => {
   const { services, setService } = useData();
   const navigate = useNavigate();
-  const goAddService = () => {
-    navigate("/desboard/add-service");
-  };
 
   const deleteService = (id) => {
     fetch(`https://iqbal.diaryofmind.com/hospital/services/${id}`, {
@@ -22,39 +19,43 @@ const DesboardService = () => {
       });
   };
   return (
-    <div className='col-span-4'>
-      <div className='text-center my-3 grid grid-cols-3'>
-        <p className='text-2xl col-span-2'>
-          Available service: {services.length}
-        </p>
-        <button
-          onClick={goAddService}
-          className='border py-1 px-3 bg-blue-500 text-white rounded w-16 justify-self-end mr-3'
-        >
-          Add+
-        </button>
-      </div>
-      {services.map((service) => (
-        <div
-          key={service._id}
-          className='grid grid-cols-3 items-center bg-white my-3 rounded'
-        >
-          <img className='w-32 p-5' src={service.img} alt='' />
-          <p className='text-xl'>{service.name}</p>
-          <div className='text-right mr-3'>
-            <button className='border py-1 px-3 bg-blue-500 text-white rounded'>
-              Edit
-            </button>
+    <table className='w-full'>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>
             <button
-              onClick={() => deleteService(service._id)}
-              className='border py-1 px-3 bg-blue-500 text-white rounded'
+              onClick={() => navigate("/desboard/add-service")}
+              className='button'
             >
-              Delete
+              Add+
             </button>
-          </div>
-        </div>
-      ))}
-    </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {services.map((service) => (
+          <tr key={service._id}>
+            <td className='p-0'>
+              <img className='h-20 w-24' src={service.img} alt='' />
+            </td>
+            <td>{service.name}</td>
+            <td>
+              <div className='flex justify-center gap-2'>
+                <button className='button normal-case'>Edit</button>
+                <button
+                  onClick={() => deleteService(service._id)}
+                  className='button normal-case'
+                >
+                  Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

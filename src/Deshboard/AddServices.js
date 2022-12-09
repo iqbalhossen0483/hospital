@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const AddServices = () => {
   const { register, handleSubmit, reset } = useForm();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = (service) => {
+    setLoading(true);
     fetch("https://iqbal.diaryofmind.com/hospital/services", {
       method: "post",
       headers: {
@@ -16,43 +18,61 @@ const AddServices = () => {
       .then((data) => {
         if (data.insertedId) {
           alert("A service added successfully");
-          reset({ name: "", img: "", sortDescription: "", description: "" });
+          reset();
         }
-      });
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
   return (
-    <div className='col-span-4 flex justify-center'>
+    <div className='flex justify-center'>
       <form
-        className='flex flex-col justify-center w-2/5 p-8 pt-3 bg-white h-auto border my-10 rounded'
+        className='w-full md:w-2/5 p-8 pt-3 bg-white rounded space-y-3'
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h3 className='text-2xl text-center'>Provide service details</h3>
-        <input
-          type='text'
-          {...register("name")}
-          placeholder='Enter service name'
-          className='border rounded mt-2 px-3 py-1'
-        />
-        <input
-          type='text'
-          {...register("img")}
-          placeholder='Enter img url'
-          className='border rounded mt-2 px-3 py-1'
-        />
-        <textarea
-          type='text'
-          {...register("sortDescription")}
-          placeholder='Enter sortDescription'
-          className='border rounded mt-2 px-3 py-1'
-        />
-        <textarea
-          type='text'
-          {...register("description")}
-          placeholder='Enter description'
-          className='border rounded mt-2 px-3 py-1'
-        />
+        <h3 className='font-medium text-center'>Provide service details</h3>
+        <div className='input-wrapper'>
+          <input
+            type='text'
+            {...register("name", { required: true })}
+            required
+            placeholder='Enter service name'
+          />
+          <label>Name</label>
+        </div>
+        <div className='input-wrapper'>
+          <input
+            type='url'
+            {...register("img", { required: true })}
+            placeholder='Enter img url'
+          />
+          <label>Image</label>
+        </div>
+        <div className='input-wrapper'>
+          <textarea
+            type='text'
+            {...register("sortDescription", { required: true })}
+            placeholder='Enter short description'
+          />
+          <label>Short Description</label>
+        </div>
+        <div className='input-wrapper'>
+          <textarea
+            type='text'
+            {...register("description")}
+            placeholder='Enter description'
+          />
+          <label>Description</label>
+        </div>
+
         <div className='flex justify-center'>
-          <input type='submit' className='mt-2 rounded button w-32' />
+          <button
+            disabled={loading}
+            type='submit'
+            className='button bg-primary'
+          >
+            {loading ? "Loading..." : "Save"}
+          </button>
         </div>
       </form>
     </div>

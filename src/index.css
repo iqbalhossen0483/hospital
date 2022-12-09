@@ -14,8 +14,9 @@
   body {
     @apply bg-gray-100;
   }
-  input {
-    @apply rounded px-3 py-1 w-full border;
+  input,
+  textarea {
+    @apply rounded px-3 py-1 w-full border focus:outline-none;
   }
   .input-wrapper {
     @apply flex flex-col-reverse gap-1;
@@ -62,7 +63,7 @@
     items-end text-gray-50 overflow-hidden;
   }
   .footer {
-    @apply bg-primary sm:grid grid-cols-3 gap-3 py-4 pb-4 px-6 mt-10 text-gray-100;
+    @apply bg-primary sm:grid grid-cols-3 gap-3 py-4 pb-4 px-6 text-gray-100;
   }
   .closebtn {
     @apply md:hidden absolute top-3 right-3 bg-gray-100 h-7 w-7 rounded-2xl flex justify-center
@@ -109,6 +110,9 @@
   -webkit-line-clamp: 7;
   line-clamp: 7;
   -webkit-box-orient: vertical;
+}
+.active {
+  color: #0392ce;
 }
 .service-img {
   transition: all 0.5s linear;

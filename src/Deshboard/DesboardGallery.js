@@ -12,36 +12,36 @@ const DesboardGallery = () => {
       .then((data) => setGallery(data));
   }, []);
 
-  const goAddGallery = () => {
-    navigate("/desboard/add-gallery");
-  };
   return (
-    <div className='col-span-4'>
-      <div className='text-center my-3 grid grid-cols-3'>
-        <p className='text-2xl col-span-2'>
-          Available service: {gallery.length}
-        </p>
-        <button
-          onClick={goAddGallery}
-          className='border py-1 px-3 bg-blue-500 text-white rounded w-16 justify-self-end mr-3'
-        >
-          Add+
-        </button>
-      </div>
-      {gallery.map((doctor) => (
-        <div
-          key={doctor._id}
-          className='grid grid-cols-3 items-center bg-white my-3 rounded'
-        >
-          <img className='w-32 p-5' src={doctor.img} alt='' />
-          <div className='text-right col-span-2 mr-3'>
-            <button className='border py-1 px-3 bg-blue-500 text-white rounded'>
-              Delete
+    <table className='w-full'>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>
+            <button
+              onClick={() => navigate("/desboard/add-gallery")}
+              className='button'
+            >
+              Add+
             </button>
-          </div>
-        </div>
-      ))}
-    </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {gallery.map((img) => (
+          <tr key={img._id}>
+            <td className='p-0'>
+              <img className='h-20 w-24' src={img.img} alt='' />
+            </td>
+            <td>
+              <div className='flex justify-center'>
+                <button className='button normal-case'>Delete</button>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

@@ -3,6 +3,7 @@ import "./App.css";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import NotFoundPage from "./component/Appointment/NotFoundPage/NotFoundPage";
 import ContactUs from "./component/ContactUs/ContactUs";
+import Footer from "./component/Footer/Footer";
 import Header from "./component/Header/Header";
 import Home from "./component/Home/Home";
 import LogIn from "./component/LogIn/LogIn";
@@ -51,6 +52,7 @@ function App() {
           </Route>
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
+        <Footer />
       </AuthProvider>
     </div>
   );

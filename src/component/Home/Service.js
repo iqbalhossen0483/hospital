@@ -5,9 +5,6 @@ const Service = (props) => {
   const navigate = useNavigate();
   const { _id, name, img, sortDescription } = props.service;
 
-  const goSingleService = (id) => {
-    navigate("/service/" + id);
-  };
   return (
     <div className='service-item'>
       <div className='grid grid-cols-2 gap-4'>
@@ -19,7 +16,7 @@ const Service = (props) => {
           <p className='text-justify text'>{sortDescription}</p>
           <div className='flex justify-center mt-2'>
             <button
-              onClick={() => goSingleService(_id)}
+              onClick={() => navigate("/service/" + _id)}
               className='button rounded text-sm normal-case'
             >
               View Details

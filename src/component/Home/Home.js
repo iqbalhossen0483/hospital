@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../Footer/Footer";
 import useData from "../Hooks/useData";
 import Banner from "./Banner";
 import DoctorTeam from "./DoctorTeam";
@@ -58,7 +57,6 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

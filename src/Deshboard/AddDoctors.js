@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const AddDoctors = () => {
   const { register, handleSubmit, reset } = useForm();
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = (doctor) => {
+    setLoading(true);
     fetch("https://iqbal.diaryofmind.com/hospital/", {
       method: "post",
       headers: {
@@ -17,48 +20,69 @@ const AddDoctors = () => {
           alert("A doctors added successfully");
           reset();
         }
-      });
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
 
   return (
-    <div className='col-span-4 flex justify-center'>
+    <div className='flex justify-center'>
       <form
-        className='flex flex-col justify-center border w-2/5 p-8 bg-white h-auto my-10 rounded'
+        className='w-full md:w-2/5 p-8 pt-3 bg-white rounded space-y-3'
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h3 className='text-2xl text-center'>Provide doctors details</h3>
-        <input
-          type='text'
-          {...register("name")}
-          placeholder='Enter doctor name'
-          className='border rounded mt-2 px-3 py-1'
-        />
-        <input
-          type='text'
-          {...register("img")}
-          placeholder='Enter img url'
-          className='border rounded mt-2 px-3 py-1'
-        />
-        <input
-          type='text'
-          {...register("department")}
-          placeholder='Enter deparment'
-          className='border rounded mt-2 px-3 py-1'
-        />
-        <input
-          type='text'
-          {...register("address")}
-          placeholder='Enter address'
-          className='border rounded mt-2 px-3 py-1'
-        />
-        <input
-          type='number'
-          {...register("phone")}
-          placeholder='Enter number'
-          className='border rounded mt-2 px-3 py-1'
-        />
-        <div className='flex justify-center'>
-          <input type='submit' className='mt-2 rounded button w-32' />
+        <h3 className='font-medium text-center'>Provide doctors details</h3>
+        <div className='input-wrapper'>
+          <input
+            type='text'
+            {...register("name", { required: true })}
+            required
+            placeholder='Enter doctor name'
+          />
+          <label>Name:</label>
+        </div>
+        <div className='input-wrapper'>
+          <input
+            type='text'
+            {...register("img", { required: true })}
+            required
+            placeholder='Enter img url'
+          />
+          <label>Image</label>
+        </div>
+        <div className='input-wrapper'>
+          <input
+            type='text'
+            {...register("department", { required: true })}
+            required
+            placeholder='Enter deparment'
+          />
+          <label>Department</label>
+        </div>
+        <div className='input-wrapper'>
+          <input
+            type='text'
+            {...register("address")}
+            placeholder='Enter address'
+          />
+          <label>Address</label>
+        </div>
+        <div className='input-wrapper'>
+          <input
+            type='number'
+            {...register("phone")}
+            placeholder='Enter number'
+          />
+          <label>Phone</label>
+        </div>
+        <div className='flex justify-center mt-5'>
+          <button
+            disabled={loading}
+            type='submit'
+            className='button bg-primary'
+          >
+            {loading ? "Loading..." : "Save"}
+          </button>
         </div>
       </form>
     </div>

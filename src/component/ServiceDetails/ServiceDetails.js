@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router";
-import Footer from "../Footer/Footer";
 import SingleService from "./SingleService";
 
 const ServiceDetails = () => {
@@ -24,12 +23,7 @@ const ServiceDetails = () => {
       </div>
     );
   }
-  return (
-    <div>
-      {service && <SingleService service={service} />}
-      <Footer />
-    </div>
-  );
+  return <div>{service && <SingleService service={service} />}</div>;
 };
 
 export default ServiceDetails;
