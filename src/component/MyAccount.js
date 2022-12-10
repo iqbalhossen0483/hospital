@@ -8,7 +8,7 @@ const MyAccount = () => {
   const { user } = useAuth();
   const alert = useAlert();
   useEffect(() => {
-    fetch(`https://iqbal.diaryofmind.com/hospital/appointment/${user.email}`)
+    fetch(`http://localhost:5000/hospital/appointment/${user.email}`)
       .then((res) => res.json())
       .then((data) => setApointment(data));
   }, [user]);
@@ -16,7 +16,7 @@ const MyAccount = () => {
   const handleDelete = (id) => {
     const confirm = window.confirm("Are you sure to cencel?");
     if (confirm) {
-      fetch(`https://iqbal.diaryofmind.com/hospital/appointment/${id}`, {
+      fetch(`http://localhost:5000/hospital/appointment/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

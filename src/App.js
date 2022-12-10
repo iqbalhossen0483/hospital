@@ -1,5 +1,4 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import "./App.css";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import NotFoundPage from "./component/Appointment/NotFoundPage/NotFoundPage";
 import ContactUs from "./component/ContactUs/ContactUs";
@@ -18,6 +17,9 @@ import Desboard from "./Deshboard/Desboard";
 import DesboardGallery from "./Deshboard/DesboardGallery";
 import DesboardService from "./Deshboard/DesboardService";
 import DesbordDoctors from "./Deshboard/DesbordDoctors";
+import "./App.css";
+import EditDoctors from "./Deshboard/EditDoctor";
+import EditServices from "./Deshboard/EditService";
 
 function App() {
   const location = useLocation();
@@ -42,12 +44,17 @@ function App() {
           />
           <Route path='/log-in' element={<LogIn />} />
           <Route path='/sign-up' element={<SignUp />} />
-          <Route path='/desboard' element={<Desboard />}>
+          <Route
+            path='/desboard'
+            element={<PrivateRoute element={<Desboard />} />}
+          >
             <Route path='service' element={<DesboardService />} />
             <Route path='doctor' element={<DesbordDoctors />} />
             <Route path='gallery' element={<DesboardGallery />} />
             <Route path='add-service' element={<AddServices />} />
+            <Route path='editservice/:id' element={<EditServices />} />
             <Route path='add-doctor' element={<AddDoctors />} />
+            <Route path='editdoctor/:id' element={<EditDoctors />} />
             <Route path='add-gallery' element={<AddGallery />} />
           </Route>
           <Route path='*' element={<NotFoundPage />} />

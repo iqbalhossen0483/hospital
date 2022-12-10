@@ -13,10 +13,10 @@ const Desboard = () => {
 
   return (
     <div className='flex gap-5'>
-      <div className='bg-white shadow min-h-[67vh] w-[200px]'>
+      <div className='bg-white shadow min-h-[67vh] w-[50px] md:w-[200px]'>
         <DesboardMenu />
       </div>
-      <div className='p-5 w-full'>
+      <div className='py-5 md:p-5 w-full'>
         <Outlet />
       </div>
     </div>

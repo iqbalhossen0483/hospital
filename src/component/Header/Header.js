@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import UserInform from "./UserInform";
@@ -7,6 +7,7 @@ const Header = ({ className }) => {
   const [showMenu, setShowMenu] = useState(true);
   const [userInfo, setUserInfo] = useState(false);
   const { user, logOut } = useAuth();
+  const header = useRef(null);
 
   //log out for user information page
   const LogOut = () => {
@@ -18,10 +19,13 @@ const Header = ({ className }) => {
     window.addEventListener("resize", () => {
       if (window.innerWidth > 480) setShowMenu(true);
     });
+    window.addEventListener("click", (e) => {
+      if (!header.current?.contains(e.target)) setUserInfo(false);
+    });
   }, []);
 
   return (
-    <div className={"header " + className}>
+    <div ref={header} className={"header " + className}>
       <div className='col-span-3 flex justify-start pl-5'>
         <Link to='/' className='text-2xl font-semibold cursor-pointer'>
           Islamia Hospital

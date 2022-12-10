@@ -7,7 +7,7 @@ const SingleDoctor = (props) => {
   return (
     <div className='doctor-wrapper'>
       <div className='flex justify-center'>
-        <img className='h-56' src={img} alt='' />
+        <img className='h-56 rounded-t' src={img} alt='' />
       </div>
       <p
         onMouseEnter={() => setShow(_id)}

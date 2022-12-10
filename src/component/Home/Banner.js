@@ -24,7 +24,7 @@ const Banner = () => {
     } else {
       appoitment.email = user.email;
       appoitment.status = "pending";
-      fetch("https://iqbal.diaryofmind.com/hospital/appointment", {
+      fetch("http://localhost:5000/hospital/appointment", {
         method: "POST",
         headers: {
           "content-type": "application/json",

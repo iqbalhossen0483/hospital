@@ -9,7 +9,7 @@ const Home = () => {
   const [gallery, setgallery] = useState([]);
 
   useEffect(() => {
-    fetch("https://iqbal.diaryofmind.com/hospital/gallery")
+    fetch("http://localhost:5000/hospital/gallery")
       .then((res) => res.json())
       .then((data) => setgallery(data))
       .catch((err) => console.log(err));
@@ -44,7 +44,7 @@ const Home = () => {
                 img.size === "row"
                   ? "row-span-2"
                   : img.size === "col"
-                  ? "col-span-2 h-40 w-full"
+                  ? "col-span-2 h-44 w-full"
                   : ""
               }`}
             >

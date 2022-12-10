@@ -5,12 +5,34 @@ import { useNavigate } from "react-router";
 
 const DesboardGallery = () => {
   const [gallery, setGallery] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [update, setUpdate] = useState(false);
+
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("https://iqbal.diaryofmind.com/hospital/gallery")
+    fetch("http://localhost:5000/hospital/gallery")
       .then((res) => res.json())
-      .then((data) => setGallery(data));
-  }, []);
+      .then((data) => setGallery(data))
+      .catch((err) => console.log(err));
+  }, [update]);
+
+  const deleteImage = (id) => {
+    const confirm = window.confirm("Are you sure to delete?");
+    if (!confirm) return;
+    setLoading(true);
+    fetch(`http://localhost:5000/hospital/gallery?id=${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount) {
+          alert("An image Deleted successfully");
+          setUpdate((prev) => !prev);
+        }
+      })
+      .catch((err) => alert(err.message))
+      .finally(() => setLoading(false));
+  };
 
   return (
     <table className='w-full'>
@@ -35,7 +57,13 @@ const DesboardGallery = () => {
             </td>
             <td>
               <div className='flex justify-center'>
-                <button className='button normal-case'>Delete</button>
+                <button
+                  disabled={loading}
+                  onClick={() => deleteImage(img._id)}
+                  className='button normal-case'
+                >
+                  Delete
+                </button>
               </div>
             </td>
           </tr>

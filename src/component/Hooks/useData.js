@@ -5,7 +5,7 @@ const useData = () => {
   const [services, setService] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    fetch("https://iqbal.diaryofmind.com/hospital/services")
+    fetch("http://localhost:5000/hospital/services")
       .then((res) => res.json())
       .then((data) => {
         setService(data);

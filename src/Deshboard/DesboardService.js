@@ -1,12 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import useData from "../component/Hooks/useData";
 const DesboardService = () => {
   const { services, setService } = useData();
   const navigate = useNavigate();
 
   const deleteService = (id) => {
-    fetch(`https://iqbal.diaryofmind.com/hospital/services/${id}`, {
+    const confirm = window.confirm("Are you sure to delete?");
+    if (!confirm) return;
+    fetch(`http://localhost:5000/hospital/services/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -43,7 +46,12 @@ const DesboardService = () => {
             <td>{service.name}</td>
             <td>
               <div className='flex justify-center gap-2'>
-                <button className='button normal-case'>Edit</button>
+                <Link
+                  to={`/desboard/editservice/${service._id}`}
+                  className='button normal-case'
+                >
+                  Edit
+                </Link>
                 <button
                   onClick={() => deleteService(service._id)}
                   className='button normal-case'

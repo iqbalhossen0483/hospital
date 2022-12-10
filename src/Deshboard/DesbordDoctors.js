@@ -2,15 +2,37 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const DesbordDoctors = () => {
   const [doctors, setDoctor] = useState([]);
+  const [update, setUpdate] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
-    fetch("https://iqbal.diaryofmind.com/hospital/doctors")
+    fetch("http://localhost:5000/hospital/doctors")
       .then((res) => res.json())
       .then((data) => setDoctor(data));
-  }, []);
+  }, [update]);
+
+  const deleteDoctor = (id) => {
+    const confirm = window.confirm("Are you sure to delete?");
+    if (!confirm) return;
+    setLoading(true);
+    fetch(`http://localhost:5000/hospital/doctors?id=${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount) {
+          alert("delete successfull");
+          setUpdate((prev) => !prev);
+        }
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  };
 
   return (
     <table className='w-full'>
@@ -37,8 +59,19 @@ const DesbordDoctors = () => {
             <td>{doctor.name}</td>
             <td>
               <div className='flex justify-center gap-2'>
-                <button className='button normal-case'>Edit</button>
-                <button className='button normal-case'>Delete</button>
+                <Link
+                  to={`/desboard/editdoctor/${doctor._id}`}
+                  className='button normal-case'
+                >
+                  Edit
+                </Link>
+                <button
+                  onClick={() => deleteDoctor(doctor._id)}
+                  disabled={loading}
+                  className='button normal-case'
+                >
+                  Delete
+                </button>
               </div>
             </td>
           </tr>

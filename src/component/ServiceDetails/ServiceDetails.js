@@ -9,7 +9,7 @@ const ServiceDetails = () => {
   const { id } = useParams();
   const [service, setService] = useState({});
   useEffect(() => {
-    fetch(`https://iqbal.diaryofmind.com/hospital/services/${id}`)
+    fetch(`http://localhost:5000/hospital/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setService(data);

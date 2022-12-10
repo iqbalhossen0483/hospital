@@ -15,7 +15,8 @@
     @apply bg-gray-100;
   }
   input,
-  textarea {
+  textarea,
+  select {
     @apply rounded px-3 py-1 w-full border focus:outline-none;
   }
   .input-wrapper {
@@ -60,7 +61,7 @@
   }
   .doctor-details {
     @apply absolute bottom-8 text-sm p-4 bg-[#0391ce6e] h-[88%] rounded-t 
-    items-end text-gray-50 overflow-hidden;
+    items-end text-gray-50 overflow-hidden w-full;
   }
   .footer {
     @apply bg-primary sm:grid grid-cols-3 gap-3 py-4 pb-4 px-6 text-gray-100;
@@ -78,6 +79,18 @@
   }
   .contact-wrapper {
     @apply w-full md:w-96 mx-auto md:border rounded-md my-24 py-7 px-4 bg-white;
+  }
+  .desboard-menu-wrapper {
+    @apply font-medium py-5 md:p-5 fixed top-14 left-3;
+  }
+  .desboard-menu-wrapper a {
+    @apply flex gap-2 items-center hover:text-gray-500;
+  }
+  .desboard-menu-wrapper a i {
+    @apply text-sm;
+  }
+  .desboard-menu-wrapper a span {
+    @apply hidden md:block;
   }
   table {
     @apply bg-white w-full md:w-[80%] mx-auto rounded;
@@ -111,8 +124,9 @@
   line-clamp: 7;
   -webkit-box-orient: vertical;
 }
-.active {
-  color: #0392ce;
+.active,
+.active:hover {
+  color: #0392ce !important;
 }
 .service-img {
   transition: all 0.5s linear;

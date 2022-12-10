@@ -3,16 +3,19 @@ import { NavLink } from "react-router-dom";
 
 const DesboardMenu = () => {
   return (
-    <div className='font-medium p-5 fixed top-14 left-3'>
+    <div className='desboard-menu-wrapper'>
       <div className='space-y-2'>
-        <NavLink to='/desboard/service' className='hover:underline block'>
-          Service
+        <NavLink to='/desboard/service'>
+          <i className='fas fa-truck' />
+          <span>Service</span>
         </NavLink>
-        <NavLink to='/desboard/doctor' className='hover:underline block'>
-          Doctor
+        <NavLink to='/desboard/doctor'>
+          <i className='fas fa-user' />
+          <span>Doctor</span>
         </NavLink>
-        <NavLink to='/desboard/gallery' className='hover:underline block'>
-          Gallery
+        <NavLink to='/desboard/gallery'>
+          <i className='fas fa-images' />
+          <span>Gallery</span>
         </NavLink>
       </div>
     </div>

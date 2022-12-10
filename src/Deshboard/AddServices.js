@@ -7,7 +7,7 @@ const AddServices = () => {
 
   const onSubmit = (service) => {
     setLoading(true);
-    fetch("https://iqbal.diaryofmind.com/hospital/services", {
+    fetch("http://localhost:5000/hospital/services", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -27,7 +27,7 @@ const AddServices = () => {
   return (
     <div className='flex justify-center'>
       <form
-        className='w-full md:w-2/5 p-8 pt-3 bg-white rounded space-y-3'
+        className='w-full p-8 pt-3 bg-white rounded space-y-3'
         onSubmit={handleSubmit(onSubmit)}
       >
         <h3 className='font-medium text-center'>Provide service details</h3>
@@ -44,6 +44,7 @@ const AddServices = () => {
           <input
             type='url'
             {...register("img", { required: true })}
+            required
             placeholder='Enter img url'
           />
           <label>Image</label>
@@ -51,7 +52,9 @@ const AddServices = () => {
         <div className='input-wrapper'>
           <textarea
             type='text'
+            rows={5}
             {...register("sortDescription", { required: true })}
+            required
             placeholder='Enter short description'
           />
           <label>Short Description</label>
@@ -59,7 +62,9 @@ const AddServices = () => {
         <div className='input-wrapper'>
           <textarea
             type='text'
-            {...register("description")}
+            rows={10}
+            {...register("description", { required: true })}
+            required
             placeholder='Enter description'
           />
           <label>Description</label>
