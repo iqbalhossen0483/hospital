@@ -9,9 +9,12 @@ const DesboardService = () => {
   const deleteService = (id) => {
     const confirm = window.confirm("Are you sure to delete?");
     if (!confirm) return;
-    fetch(`http://localhost:5000/hospital/services/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://myserver-production-ddf8.up.railway.app/hospital/services/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {

@@ -11,7 +11,9 @@ const EditServices = () => {
 
   useEffect(() => {
     if (!id) return navigate("/desboard/service");
-    fetch(`http://localhost:5000/hospital/services/${id}`)
+    fetch(
+      `https://myserver-production-ddf8.up.railway.app/hospital/services/${id}`
+    )
       .then(async (res) => {
         const data = await res.json();
         if (!res.ok) throw Error(data.message);
@@ -31,7 +33,7 @@ const EditServices = () => {
     }
     setLoading(true);
     peyload.id = id;
-    fetch("http://localhost:5000/hospital/services", {
+    fetch("https://myserver-production-ddf8.up.railway.app/hospital/services", {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -7,7 +7,7 @@ const AddDoctors = () => {
 
   const onSubmit = (doctor) => {
     setLoading(true);
-    fetch("http://localhost:5000/hospital/doctors", {
+    fetch("https://myserver-production-ddf8.up.railway.app/hospital/doctors", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -5,7 +5,7 @@ const useData = () => {
   const [services, setService] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:5000/hospital/services")
+    fetch("https://myserver-production-ddf8.up.railway.app/hospital/services")
       .then((res) => res.json())
       .then((data) => {
         setService(data);

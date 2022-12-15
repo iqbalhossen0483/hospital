@@ -10,7 +10,7 @@ const DesboardGallery = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:5000/hospital/gallery")
+    fetch("https://myserver-production-ddf8.up.railway.app/hospital/gallery")
       .then((res) => res.json())
       .then((data) => setGallery(data))
       .catch((err) => console.log(err));
@@ -20,9 +20,12 @@ const DesboardGallery = () => {
     const confirm = window.confirm("Are you sure to delete?");
     if (!confirm) return;
     setLoading(true);
-    fetch(`http://localhost:5000/hospital/gallery?id=${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://myserver-production-ddf8.up.railway.app/hospital/gallery?id=${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {

@@ -24,13 +24,16 @@ const Banner = () => {
     } else {
       appoitment.email = user.email;
       appoitment.status = "pending";
-      fetch("http://localhost:5000/hospital/appointment", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(appoitment),
-      })
+      fetch(
+        "https://myserver-production-ddf8.up.railway.app/hospital/appointment",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(appoitment),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {

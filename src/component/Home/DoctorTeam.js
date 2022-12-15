@@ -6,7 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 const DoctorTeam = () => {
   const [doctors, setDoctors] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/hospital/doctors")
+    fetch("https://myserver-production-ddf8.up.railway.app/hospital/doctors")
       .then((res) => res.json())
       .then((data) => setDoctors(data))
       .catch((err) => console.log(err));

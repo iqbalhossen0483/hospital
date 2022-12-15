@@ -9,7 +9,9 @@ const ServiceDetails = () => {
   const { id } = useParams();
   const [service, setService] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/hospital/services/${id}`)
+    fetch(
+      `https://myserver-production-ddf8.up.railway.app/hospital/services/${id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setService(data);

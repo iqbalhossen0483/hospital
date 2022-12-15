@@ -8,7 +8,9 @@ const MyAccount = () => {
   const { user } = useAuth();
   const alert = useAlert();
   useEffect(() => {
-    fetch(`http://localhost:5000/hospital/appointment/${user.email}`)
+    fetch(
+      `https://myserver-production-ddf8.up.railway.app/hospital/appointment/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setApointment(data));
   }, [user]);
@@ -16,9 +18,12 @@ const MyAccount = () => {
   const handleDelete = (id) => {
     const confirm = window.confirm("Are you sure to cencel?");
     if (confirm) {
-      fetch(`http://localhost:5000/hospital/appointment/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://myserver-production-ddf8.up.railway.app/hospital/appointment/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
