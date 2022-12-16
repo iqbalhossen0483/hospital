@@ -1,4 +1,4 @@
-# Tourism web
+# Hospital
 
 This project was build by react and tailwind css. see the site https://islamia-hospital.web.app/
 
