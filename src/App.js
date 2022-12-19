@@ -45,7 +45,7 @@ function App() {
           <Route path='/log-in' element={<LogIn />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route
-            path='/desboard'
+            path='/admin'
             element={<PrivateRoute element={<Desboard />} />}
           >
             <Route path='service' element={<DesboardService />} />

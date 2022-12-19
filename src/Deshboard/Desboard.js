@@ -7,7 +7,7 @@ const Desboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (location.pathname === "/desboard") navigate("/desboard/service");
+    if (location.pathname === "/admin") navigate("/admin/service");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
