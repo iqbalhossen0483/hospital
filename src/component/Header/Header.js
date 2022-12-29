@@ -57,7 +57,7 @@ const Header = ({ className }) => {
             className='cursor-pointer'
             onClick={() => setUserInfo((prev) => !prev)}
           >
-            {user.displayName}
+            {user.displayName.split(" ")[0]}
           </p>
         )}
       </div>

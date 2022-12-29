@@ -1,10 +1,10 @@
-import React from "react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import googleImg from "../../images/google.png";
-import useAuth from "../Hooks/useAuth";
 import useTailwind from "../Hooks/useTailwind";
+import { useForm } from "react-hook-form";
+import useAuth from "../Hooks/useAuth";
+import { useState } from "react";
+import React from "react";
 
 const SignUp = () => {
   const [error, setError] = useState("");
@@ -16,22 +16,18 @@ const SignUp = () => {
   const location = useLocation();
   const url = location.state?.from.pathname;
 
-  const signUpEmail = (email, password, name) => {
-    setDisable(true);
-    signUpWithEmail(email, password, name)
-      .then((result) => {
-        updatUser(name);
-        setError("");
-        navigate(url || "/");
-        setDisable(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setDisable(false);
-      })
-      .finally(() => {
-        setIsLoad(false);
-      });
+  const signUpEmail = async (email, password, name) => {
+    try {
+      setDisable(true);
+      setError("");
+      await signUpWithEmail(email, password, name);
+      await updatUser(name);
+      navigate(url || "/");
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setDisable(false);
+    }
   };
 
   const onSubmit = (data) => {
@@ -40,10 +36,6 @@ const SignUp = () => {
     if (data.password !== data.re_password) {
       return setError("Your password should be match above");
     }
-    if (data.password.length < 6) {
-      return setError("Your password must be 6 character or above");
-    }
-
     setError("");
     name = data.firstName + " " + data.lastName;
     data.name = name;
@@ -52,9 +44,9 @@ const SignUp = () => {
 
   //redirect user
   const signInGoogle = () => {
+    setError("");
     signInWithGoogle()
       .then((result) => {
-        setError("");
         navigate(url || "/");
       })
       .catch((error) => {

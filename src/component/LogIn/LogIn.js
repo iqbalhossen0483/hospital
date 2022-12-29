@@ -24,10 +24,10 @@ const LogIn = () => {
 
   //redirect user
   const signInGoogle = () => {
+    setError("");
     signInWithGoogle()
       .then((result) => {
         navigate(url || "/");
-        setError("");
       })
       .catch((error) => {
         setError(error.message);
@@ -38,19 +38,16 @@ const LogIn = () => {
   };
   const logInEmail = (e, email, password) => {
     setDisable(true);
-    console.log("click");
     logInWithEmail(e, email, password)
       .then((result) => {
         navigate(url || "/");
         setError("");
-        setDisable(false);
       })
       .catch((error) => {
         setError(error.message);
-        setDisable(false);
       })
       .finally(() => {
-        setIsLoad(false);
+        setDisable(false);
       });
   };
   return (
