@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import useAuth from "./Hooks/useAuth";
 
@@ -8,9 +7,7 @@ const MyAccount = () => {
   const { user } = useAuth();
   const alert = useAlert();
   useEffect(() => {
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/hospital/appointment/${user.email}`
-    )
+    fetch(`https://server.switchcafebd.com/hospital/appointment/${user.email}`)
       .then((res) => res.json())
       .then((data) => setApointment(data));
   }, [user]);
@@ -18,12 +15,9 @@ const MyAccount = () => {
   const handleDelete = (id) => {
     const confirm = window.confirm("Are you sure to cencel?");
     if (confirm) {
-      fetch(
-        `https://myserver-production-ddf8.up.railway.app/hospital/appointment/${id}`,
-        {
-          method: "DELETE",
-        }
-      )
+      fetch(`https://server.switchcafebd.com/hospital/appointment/${id}`, {
+        method: "DELETE",
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {

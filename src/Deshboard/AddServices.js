@@ -7,7 +7,7 @@ const AddServices = () => {
 
   const onSubmit = (service) => {
     setLoading(true);
-    fetch("https://myserver-production-ddf8.up.railway.app/hospital/services", {
+    fetch("https://server.switchcafebd.com/hospital/services", {
       method: "post",
       headers: {
         "content-type": "application/json",

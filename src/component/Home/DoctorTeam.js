@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import SingleDoctor from "./SingleDoctor";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import SingleDoctor from "./SingleDoctor";
 
 const DoctorTeam = () => {
   const [doctors, setDoctors] = useState([]);
   useEffect(() => {
-    fetch("https://myserver-production-ddf8.up.railway.app/hospital/doctors")
+    fetch("https://server.switchcafebd.com/hospital/doctors")
       .then((res) => res.json())
       .then((data) => setDoctors(data))
       .catch((err) => console.log(err));

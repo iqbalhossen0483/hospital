@@ -11,9 +11,7 @@ const EditServices = () => {
 
   useEffect(() => {
     if (!id) return navigate("/desboard/service");
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/hospital/services/${id}`
-    )
+    fetch(`https://server.switchcafebd.com/hospital/services/${id}`)
       .then(async (res) => {
         const data = await res.json();
         if (!res.ok) throw Error(data.message);
@@ -33,7 +31,7 @@ const EditServices = () => {
     }
     setLoading(true);
     peyload.id = id;
-    fetch("https://myserver-production-ddf8.up.railway.app/hospital/services", {
+    fetch("https://server.switchcafebd.com/hospital/services", {
       method: "PUT",
       headers: {
         "content-type": "application/json",

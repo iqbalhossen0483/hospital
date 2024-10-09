@@ -9,12 +9,9 @@ const DesboardService = () => {
   const deleteService = (id) => {
     const confirm = window.confirm("Are you sure to delete?");
     if (!confirm) return;
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/hospital/services/${id}`,
-      {
-        method: "DELETE",
-      }
-    )
+    fetch(`https://server.switchcafebd.com/hospital/services/${id}`, {
+      method: "DELETE",
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {

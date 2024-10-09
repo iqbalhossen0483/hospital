@@ -1,6 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -11,7 +9,7 @@ const DesbordDoctors = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://myserver-production-ddf8.up.railway.app/hospital/doctors")
+    fetch("https://server.switchcafebd.com/hospital/doctors")
       .then((res) => res.json())
       .then((data) => setDoctor(data));
   }, [update]);
@@ -20,12 +18,9 @@ const DesbordDoctors = () => {
     const confirm = window.confirm("Are you sure to delete?");
     if (!confirm) return;
     setLoading(true);
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/hospital/doctors?id=${id}`,
-      {
-        method: "DELETE",
-      }
-    )
+    fetch(`https://server.switchcafebd.com/hospital/doctors?id=${id}`, {
+      method: "DELETE",
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {

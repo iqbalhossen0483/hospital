@@ -1,6 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 const DesboardGallery = () => {
@@ -10,7 +8,7 @@ const DesboardGallery = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("https://myserver-production-ddf8.up.railway.app/hospital/gallery")
+    fetch("https://server.switchcafebd.com/hospital/gallery")
       .then((res) => res.json())
       .then((data) => setGallery(data))
       .catch((err) => console.log(err));
@@ -20,12 +18,9 @@ const DesboardGallery = () => {
     const confirm = window.confirm("Are you sure to delete?");
     if (!confirm) return;
     setLoading(true);
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/hospital/gallery?id=${id}`,
-      {
-        method: "DELETE",
-      }
-    )
+    fetch(`https://server.switchcafebd.com/hospital/gallery?id=${id}`, {
+      method: "DELETE",
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {

@@ -9,7 +9,7 @@ const Home = () => {
   const [gallery, setgallery] = useState([]);
 
   useEffect(() => {
-    fetch("https://myserver-production-ddf8.up.railway.app/hospital/gallery")
+    fetch("https://server.switchcafebd.com/hospital/gallery")
       .then((res) => res.json())
       .then((data) => setgallery(data))
       .catch((err) => console.log(err));

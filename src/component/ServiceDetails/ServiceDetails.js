@@ -1,6 +1,4 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import SingleService from "./SingleService";
 
@@ -9,9 +7,7 @@ const ServiceDetails = () => {
   const { id } = useParams();
   const [service, setService] = useState({});
   useEffect(() => {
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/hospital/services/${id}`
-    )
+    fetch(`https://server.switchcafebd.com/hospital/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setService(data);

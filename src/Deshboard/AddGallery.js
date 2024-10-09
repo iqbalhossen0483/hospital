@@ -8,7 +8,7 @@ const AddGallery = () => {
   const onSubmit = (data) => {
     console.log(data);
     setLoading(true);
-    fetch("https://myserver-production-ddf8.up.railway.app/hospital/gallery", {
+    fetch("https://server.switchcafebd.com/hospital/gallery", {
       method: "POST",
       headers: {
         "content-type": "application/json",

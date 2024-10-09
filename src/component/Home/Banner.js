@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Header/Header";
-import { useForm } from "react-hook-form";
-import useTailwind from "../Hooks/useTailwind";
 import { useAlert } from "react-alert";
+import { useForm } from "react-hook-form";
+import Header from "../Header/Header";
 import useAuth from "../Hooks/useAuth";
+import useTailwind from "../Hooks/useTailwind";
 
 const Banner = () => {
   const [disable, setdisable] = useState(false);
@@ -24,16 +24,13 @@ const Banner = () => {
     } else {
       appoitment.email = user.email;
       appoitment.status = "pending";
-      fetch(
-        "https://myserver-production-ddf8.up.railway.app/hospital/appointment",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(appoitment),
-        }
-      )
+      fetch("https://server.switchcafebd.com/hospital/appointment", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(appoitment),
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
